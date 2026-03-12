@@ -171,8 +171,8 @@ const phases = [
   <section class="bg-surface py-20 px-6">
     <div class="max-w-5xl mx-auto">
       <SectionHeading
-        title="Go live in 3 months"
-        subtitle="Most institutions start with one department and expand from there."
+        title="Go live in one month"
+        subtitle="Most institutions are fully operational within 4 weeks. See our detailed implementation process."
       />
       <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
         {phases.map((phase, i) => (
@@ -187,6 +187,11 @@ const phases = [
             <p class="text-sm text-text-muted leading-relaxed">{phase.description}</p>
           </div>
         ))}
+      </div>
+      <div class="mt-10 text-center">
+        <a href="/implementation" class="inline-flex items-center px-6 py-3 text-sm font-semibold border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors no-underline">
+          See the full implementation process &rarr;
+        </a>
       </div>
     </div>
   </section>

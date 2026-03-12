@@ -1,0 +1,249 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import CTASection from "../components/CTASection.astro";
+
+const phases = [
+  {
+    number: "01",
+    title: "Onboarding & Setup",
+    timeline: "Week 1–2",
+    items: [
+      "We share simple Excel templates for your departments, faculty, residents, and staff — no complex data migration",
+      "Your institution's branding, logo, and colours are applied to the platform — residents see your identity, not ours",
+      "All user accounts are created and configured with appropriate roles and permissions",
+      "Custom theme with institutional colours available if needed",
+    ],
+  },
+  {
+    number: "02",
+    title: "Training & Induction",
+    timeline: "Week 3–4",
+    items: [
+      "Separate induction sessions for faculty and residents — each group learns what they need, not what they don't",
+      "Hands-on training: creating portfolio entries, submitting assessments, providing feedback, using the mobile app",
+      "Daily troubleshooting sessions for the first few days until users are comfortable with the platform",
+      "Training delivered by medical educationists who understand your workflows, not IT staff reading a manual",
+    ],
+  },
+  {
+    number: "03",
+    title: "Review & Stabilise",
+    timeline: "Month 3",
+    items: [
+      "Formal progress review with the Dean, MEU Head, PG Coordinator, and department heads",
+      "Usage analytics: which departments are active, where adoption needs support, what's working well",
+      "We recommend appointing an ePortfolio Coordinator within the institution to serve as the ongoing liaison",
+      "Workflow refinements based on real usage patterns and faculty feedback",
+    ],
+  },
+  {
+    number: "04",
+    title: "Ongoing Operations",
+    timeline: "Yearly cycle",
+    items: [
+      "New batch of postgraduates inducted each academic year — same structured onboarding process",
+      "Faculty who have left are inactivated every 100 days; new faculty added immediately",
+      "Continuous platform updates aligned with NMC, NBEMS, and NAAC regulatory changes",
+      "Regular check-ins with institutional leadership on adoption metrics and outcomes",
+    ],
+  },
+];
+
+const advanced = [
+  {
+    title: "EPA Framework Development",
+    description: "We work with your departments to create, adapt, and refine Entrustable Professional Activities for each discipline. Our medical education specialists help map competencies, define entrustment levels, and configure the SmartEvidence matrix — so your EPA framework reflects your specialty's actual clinical practice, not a generic template.",
+  },
+  {
+    title: "Research Collaboration",
+    description: "ePortfolio data is a rich source for medical education research. We partner with institutions to design research projects, analyse portfolio-based outcomes, and help faculty publish papers based on their CBME models and implementation experience. Your institution's journey becomes a contribution to the evidence base.",
+  },
+  {
+    title: "FACE-GT Integration",
+    description: "Institutions can discover and adopt FACE-GT alongside Academe ePortfolios for a complete PG Training Management System — covering the full spectrum from competency tracking and assessment to training programme administration.",
+  },
+  {
+    title: "Accreditation Support",
+    description: "We support institutions during NAAC, NABH, NMC, and other statutory assessments. ePortfolio data provides ready evidence for outcome-based education (NAAC Criteria 2 & 6), clinical training documentation, and quality assurance — reducing the scramble that typically precedes accreditation visits.",
+  },
+];
+---
+
+<BaseLayout
+  title="Implementation"
+  description="How Academe ePortfolios is implemented at your institution. Onboarding, training, ongoing support — delivered by medical educationists, not IT staff."
+>
+
+  <!-- Hero -->
+  <section class="bg-gradient-to-b from-white to-surface py-20 md:py-28 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+      <p class="text-sm uppercase tracking-wider font-medium text-accent mb-4">Implementation</p>
+      <h1 class="text-4xl md:text-5xl font-serif font-bold text-primary leading-tight">
+        From sign-up to sustained use
+      </h1>
+      <p class="mt-6 text-lg text-text-muted leading-relaxed max-w-3xl mx-auto">
+        A structured, hands-on implementation process — guided by medical educationists who understand competency-based training, not IT consultants learning your domain.
+      </p>
+    </div>
+  </section>
+
+  <!-- Differentiator -->
+  <section class="bg-primary-dark py-12 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+      <p class="text-white text-lg leading-relaxed">
+        Every step of implementation is led by
+        <span class="text-accent font-semibold">Medical Educationists and Medical Informaticians</span>
+        with years of experience in CBME, EPA frameworks, and postgraduate training.
+        This is not an IT system with services provided by IT professionals —
+        it is a <span class="text-accent font-semibold">Medical Education Platform</span>.
+      </p>
+    </div>
+  </section>
+
+  <!-- Phased Implementation -->
+  <section class="bg-white py-20 px-6">
+    <div class="max-w-5xl mx-auto">
+      <SectionHeading
+        eyebrow="The process"
+        title="Four phases to a working ePortfolio system"
+        subtitle="Most institutions are fully operational within one month. Sustained adoption follows from structured support, not just software deployment."
+      />
+      <div class="space-y-12">
+        {phases.map((phase) => (
+          <div class="relative pl-16 md:pl-20">
+            <div class="absolute left-0 top-0 w-12 h-12 md:w-14 md:h-14 rounded-full bg-primary text-white flex items-center justify-center text-lg md:text-xl font-bold">
+              {phase.number}
+            </div>
+            <div>
+              <div class="flex flex-col sm:flex-row sm:items-baseline gap-2 mb-3">
+                <h3 class="text-xl font-serif font-bold text-primary">{phase.title}</h3>
+                <span class="text-sm font-medium text-accent">{phase.timeline}</span>
+              </div>
+              <ul class="space-y-3">
+                {phase.items.map((item) => (
+                  <li class="flex items-start gap-3 text-text-muted leading-relaxed">
+                    <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Visual Timeline -->
+  <section class="bg-surface py-16 px-6">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-2xl font-serif font-bold text-primary text-center mb-12">Implementation timeline</h2>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="bg-white rounded-xl border border-border p-6 text-center">
+          <p class="text-3xl font-bold text-primary">2</p>
+          <p class="text-sm text-text-muted mt-1">weeks to go live</p>
+        </div>
+        <div class="bg-white rounded-xl border border-border p-6 text-center">
+          <p class="text-3xl font-bold text-primary">4</p>
+          <p class="text-sm text-text-muted mt-1">training sessions</p>
+        </div>
+        <div class="bg-white rounded-xl border border-border p-6 text-center">
+          <p class="text-3xl font-bold text-primary">90</p>
+          <p class="text-sm text-text-muted mt-1">day progress review</p>
+        </div>
+        <div class="bg-white rounded-xl border border-border p-6 text-center">
+          <p class="text-3xl font-bold text-primary">365</p>
+          <p class="text-sm text-text-muted mt-1">days continuous support</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Advanced Services -->
+  <section class="bg-white py-20 px-6">
+    <div class="max-w-5xl mx-auto">
+      <SectionHeading
+        eyebrow="Beyond deployment"
+        title="Advanced services"
+        subtitle="Implementation is just the beginning. We partner with institutions for the long term."
+      />
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {advanced.map((service) => (
+          <div class="bg-surface rounded-xl border border-border p-8">
+            <h3 class="text-lg font-semibold text-primary mb-3">{service.title}</h3>
+            <p class="text-sm text-text-muted leading-relaxed">{service.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ePortfolio Coordinator -->
+  <section class="bg-surface py-16 px-6">
+    <div class="max-w-3xl mx-auto">
+      <div class="bg-white rounded-2xl border border-border p-8 md:p-12">
+        <h2 class="text-2xl font-serif font-bold text-primary mb-4">The ePortfolio Coordinator</h2>
+        <p class="text-text-muted leading-relaxed mb-6">
+          We strongly recommend that each institution appoint an <strong class="text-text">ePortfolio Coordinator</strong> — a faculty member or academic administrator who serves as the ongoing liaison between the institution and our team. This person:
+        </p>
+        <ul class="space-y-3">
+          {[
+            "Coordinates new user onboarding and annual batch inductions",
+            "Serves as the first point of contact for faculty and resident queries",
+            "Monitors adoption metrics and flags departments that need support",
+            "Participates in quarterly reviews with institutional leadership",
+            "Liaises with our medical education specialists on framework updates and research projects",
+          ].map((item) => (
+            <li class="flex items-start gap-3 text-text-muted leading-relaxed">
+              <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who Delivers -->
+  <section class="bg-white py-20 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+      <SectionHeading
+        eyebrow="Our team"
+        title="Medical educationists, not IT consultants"
+      />
+      <p class="text-text-muted leading-relaxed max-w-3xl mx-auto mb-10">
+        Every implementation engagement is led by professionals with deep experience in medical education, competency-based training, and clinical assessment design. They speak your language — EPAs, milestones, entrustment levels, AETCOM, MSF — because they have lived it. When your HoD asks how to structure EPA rubrics for their specialty, the person answering has done it before, not for the first time.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-surface rounded-xl border border-border p-6">
+          <p class="text-2xl font-bold text-primary">CBME</p>
+          <p class="mt-2 text-sm text-text-muted">Competency framework design and EPA mapping</p>
+        </div>
+        <div class="bg-surface rounded-xl border border-border p-6">
+          <p class="text-2xl font-bold text-primary">Assessment</p>
+          <p class="mt-2 text-sm text-text-muted">WBA design, rubric development, entrustment decisions</p>
+        </div>
+        <div class="bg-surface rounded-xl border border-border p-6">
+          <p class="text-2xl font-bold text-primary">Research</p>
+          <p class="mt-2 text-sm text-text-muted">Study design, data analysis, publication support</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <CTASection
+    headline="Ready to implement ePortfolios at your institution?"
+    description="A 30-minute conversation to understand your departments, timelines, and goals. We'll share a tailored implementation plan."
+    primaryLabel="Schedule a Demo"
+    primaryHref="/demo"
+    secondaryLabel="Read Case Studies"
+    secondaryHref="/case-studies"
+  />
+
+</BaseLayout>
