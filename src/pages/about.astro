@@ -1,0 +1,120 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import CTASection from "../components/CTASection.astro";
+
+const stats = [
+  { value: "3,611", label: "Users at SBVU" },
+  { value: "131,000+", label: "Portfolio pages" },
+  { value: "PHP 8.1", label: "PostgreSQL / MariaDB, Bootstrap 5" },
+  { value: "React Native", label: "Mobile companion app" },
+];
+
+const openSourceReasons = [
+  "Full institutional control over your data and infrastructure",
+  "No vendor lock-in — switch providers or self-host at any time",
+  "Export data in standard formats (LEAP2A)",
+  "Community-driven development with transparent roadmap",
+];
+---
+
+<BaseLayout title="About" description="About Academe ePortfolios — open-source ePortfolio platform for Indian medical education by Academe Research, Inc.">
+
+  <section class="bg-gradient-to-b from-white to-surface py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <SectionHeading title="About Academe ePortfolios" />
+    </div>
+  </section>
+
+  <!-- About the Platform -->
+  <section class="bg-white py-20 px-6">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-2xl font-serif font-bold text-primary mb-6">About the Platform</h2>
+      <div class="space-y-4 text-text-muted leading-relaxed">
+        <p>
+          Academe ePortfolios is an open-source ePortfolio platform purpose-built for Indian educational institutions. It gives medical colleges EPA tracking, reflective journals, competency frameworks, mentor feedback, and NAAC-ready documentation in one place.
+        </p>
+        <p>
+          The platform is forked from <a href="https://mahara.org" target="_blank" rel="noopener" class="text-accent hover:text-accent-light no-underline font-medium">Mahara</a> — an established open-source ePortfolio system used globally for over 15 years. We have customised it for Indian regulatory requirements including NMC CBME, NBEMS e-logbooks, and NAAC outcome-based education standards.
+        </p>
+        <p>
+          Academe ePortfolios is licensed under the GNU General Public License v3 — free to use, modify, and distribute. There are no per-user fees.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Academe Research -->
+  <section class="bg-surface py-20 px-6">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-2xl font-serif font-bold text-primary mb-6">About Academe Research</h2>
+      <div class="space-y-4 text-text-muted leading-relaxed">
+        <p>
+          <strong class="text-text">Academe Research, Inc.</strong> is India's Education Infrastructure Partner. We build and operate the technology layer that educational institutions need to deliver modern, compliant programmes.
+        </p>
+        <p>
+          Our verticals include <strong class="text-text">Academe Cloud</strong> (multi-cloud hosting for educational institutions), <strong class="text-text">Academe CMS Medical College Edition</strong> (institutional websites), <strong class="text-text">Academe Education</strong> (Canvas LMS with CBME content), <strong class="text-text">Academe Advisory</strong> (digital transformation consulting), and <strong class="text-text">Academe Institute</strong> (faculty training programmes).
+        </p>
+        <p>
+          Learn more at <a href="https://academe.in" target="_blank" rel="noopener" class="text-accent hover:text-accent-light no-underline font-medium">academe.in</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Production Proven -->
+  <section class="bg-white py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-2xl font-serif font-bold text-primary mb-8 text-center">Production Proven</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        {stats.map(({ value, label }) => (
+          <div class="bg-surface rounded-xl border border-border p-6 text-center">
+            <p class="text-2xl md:text-3xl font-bold text-primary">{value}</p>
+            <p class="mt-2 text-sm text-text-muted">{label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Open Source -->
+  <section class="bg-surface py-20 px-6">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-2xl font-serif font-bold text-primary mb-6">Open Source — Why It Matters</h2>
+      <ul class="space-y-3 text-text-muted leading-relaxed">
+        {openSourceReasons.map((reason) => (
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            <span>{reason}</span>
+          </li>
+        ))}
+      </ul>
+      <p class="mt-6">
+        <a href="https://github.com/academeio/eportfolios" target="_blank" rel="noopener" class="text-accent hover:text-accent-light no-underline font-medium">
+          View on GitHub &rarr;
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="bg-white py-20 px-6">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-2xl font-serif font-bold text-primary mb-6">Get in Touch</h2>
+      <p class="text-text-muted leading-relaxed">
+        Email us at <a href="mailto:hello@academe.in" class="text-accent hover:text-accent-light no-underline font-medium">hello@academe.in</a>
+      </p>
+      <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="/demo" class="inline-flex items-center px-6 py-3 text-sm font-semibold text-white bg-primary rounded-lg hover:bg-primary-light transition-colors no-underline">
+          Schedule a Demo
+        </a>
+        <a href="https://clients.academe.in" target="_blank" rel="noopener" class="inline-flex items-center px-6 py-3 text-sm font-semibold border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors no-underline">
+          Client Portal
+        </a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
