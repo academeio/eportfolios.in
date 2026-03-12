@@ -1,0 +1,40 @@
+---
+interface Props {
+  headline: string;
+  description?: string;
+  primaryLabel?: string;
+  primaryHref?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+  variant?: "light" | "dark";
+}
+const {
+  headline, description,
+  primaryLabel = "Schedule a Demo", primaryHref = "/demo",
+  secondaryLabel, secondaryHref,
+  variant = "light",
+} = Astro.props;
+const bgClass = variant === "dark" ? "bg-primary text-white" : "bg-surface-alt";
+const primaryBtnClass = variant === "dark"
+  ? "bg-accent text-primary-dark hover:bg-accent-light"
+  : "bg-primary text-white hover:bg-primary-light";
+const secondaryBtnClass = variant === "dark"
+  ? "border border-white/30 text-white hover:bg-white/10"
+  : "border border-primary text-primary hover:bg-primary hover:text-white";
+---
+<section class:list={["py-16 px-6", bgClass]}>
+  <div class="max-w-3xl mx-auto text-center">
+    <h2 class:list={["text-2xl md:text-3xl font-serif font-bold", variant === "dark" ? "text-white" : "text-primary"]}>
+      {headline}
+    </h2>
+    {description && (
+      <p class:list={["mt-4 text-lg", variant === "dark" ? "text-white/80" : "text-text-muted"]}>{description}</p>
+    )}
+    <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href={primaryHref} class:list={["inline-flex items-center px-6 py-3 text-sm font-semibold rounded-lg transition-colors no-underline", primaryBtnClass]}>{primaryLabel}</a>
+      {secondaryLabel && secondaryHref && (
+        <a href={secondaryHref} class:list={["inline-flex items-center px-6 py-3 text-sm font-semibold rounded-lg transition-colors no-underline", secondaryBtnClass]}>{secondaryLabel}</a>
+      )}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,16 @@
+---
+interface Props {
+  stat: string;
+  label: string;
+  source: string;
+  sourceUrl: string;
+}
+const { stat, label, source, sourceUrl } = Astro.props;
+---
+<div class="bg-white rounded-xl p-8 border border-border text-center">
+  <p class="text-3xl md:text-4xl font-bold text-primary">{stat}</p>
+  <p class="mt-2 text-text-muted text-sm leading-relaxed">{label}</p>
+  <a href={sourceUrl} target="_blank" rel="noopener" class="mt-3 inline-block text-xs text-accent hover:text-accent-light no-underline">
+    {source} &rarr;
+  </a>
+</div>
