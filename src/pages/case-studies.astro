@@ -1,0 +1,140 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import CTASection from "../components/CTASection.astro";
+
+const metrics = [
+  { value: "3,611", label: "Users" },
+  { value: "131,000+", label: "Portfolio pages" },
+  { value: "1.66M", label: "Tags" },
+  { value: "104 GB", label: "Data" },
+];
+
+const internationalCases = [
+  {
+    country: "South Africa",
+    focus: "Family Medicine",
+    details: [
+      "28 registrars, Western Cape province (2019)",
+      "Quasi-experimental: e-portfolio vs paper showed significantly better feedback alignment",
+      "Adopted nationally by South African Academy of Family Physicians",
+      "Redesigned in 2023 for 22 EPAs",
+    ],
+    href: "https://bmcmededuc.biomedcentral.com/articles/10.1186/s12909-019-1692-x",
+  },
+  {
+    country: "United Kingdom",
+    focus: "NHS Foundation Programme",
+    details: [
+      "25,000+ healthcare trainees",
+      "National standard since 2005",
+      'Described as the "spinal column" of specialty training',
+      "Covers WBAs (mini-CEX, CbD), appraisals, ARCP outcomes",
+    ],
+    href: "https://www.nhseportfolios.org/Anon/AboutUs",
+  },
+  {
+    country: "India",
+    focus: "Geetanjali Medical College",
+    details: [
+      "48 Phase III MBBS students (2024)",
+      "29% knowledge improvement (vs 19% through seminars)",
+      "88% faculty satisfaction",
+      "92% wanted expansion to other subjects",
+    ],
+    href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11691100/",
+  },
+];
+---
+
+<BaseLayout title="Case Studies" description="Real institutions using ePortfolios for competency-based medical education. Evidence from India, South Africa, and the UK.">
+
+  <!-- Header -->
+  <section class="bg-gradient-to-b from-white to-surface py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <SectionHeading
+        eyebrow="Evidence in practice"
+        title="Real institutions, real results"
+      />
+    </div>
+  </section>
+
+  <!-- Featured: SBVU -->
+  <section class="bg-white py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="bg-surface rounded-2xl border border-border p-8 md:p-12">
+        <p class="text-sm uppercase tracking-wider font-medium text-accent mb-2">Featured Implementation</p>
+        <h2 class="text-2xl md:text-3xl font-serif font-bold text-primary">
+          Sri Balaji Vidyapeeth University, Puducherry
+        </h2>
+        <p class="mt-4 text-text-muted leading-relaxed max-w-3xl">
+          Deemed-to-be University running multiple medical and dental PG programmes. Self-hosted on institutional infrastructure with PostgreSQL.
+        </p>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-10">
+          {metrics.map(({ value, label }) => (
+            <div class="bg-white rounded-xl border border-border p-6 text-center">
+              <p class="text-2xl md:text-3xl font-bold text-primary">{value}</p>
+              <p class="mt-1 text-sm text-text-muted">{label}</p>
+            </div>
+          ))}
+        </div>
+
+        <blockquote class="mt-10 border-l-4 border-accent pl-6 py-2">
+          <p class="text-text-muted italic">"Institutional quote coming soon."</p>
+        </blockquote>
+
+        <p class="mt-6 text-sm text-text-light italic">Full case study download — Coming soon</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- International Evidence -->
+  <section class="bg-surface py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <SectionHeading
+        eyebrow="International evidence"
+        title="ePortfolios at scale around the world"
+      />
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {internationalCases.map(({ country, focus, details, href }) => (
+          <div class="bg-white rounded-xl border border-border p-8 flex flex-col">
+            <p class="text-xs uppercase tracking-wider font-medium text-accent mb-1">{country}</p>
+            <h3 class="text-lg font-semibold text-primary">{focus}</h3>
+            <ul class="mt-4 space-y-2 text-sm text-text-muted leading-relaxed flex-1">
+              {details.map((d) => (
+                <li class="flex items-start gap-2">
+                  <svg class="w-4 h-4 text-accent mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>{d}</span>
+                </li>
+              ))}
+            </ul>
+            <a href={href} target="_blank" rel="noopener" class="mt-6 text-sm font-medium text-accent hover:text-accent-light no-underline transition-colors">
+              Read the source &rarr;
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- More Coming -->
+  <section class="bg-white py-16 px-6">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-2xl font-serif font-bold text-primary">More coming</h2>
+      <p class="mt-4 text-text-muted leading-relaxed">
+        We're documenting implementations across Indian medical colleges. Want your institution featured?
+        Contact us at <a href="mailto:hello@academe.in" class="text-accent hover:text-accent-light no-underline font-medium">hello@academe.in</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <CTASection
+    headline="Ready to start your own story?"
+    primaryHref="/demo"
+  />
+
+</BaseLayout>
