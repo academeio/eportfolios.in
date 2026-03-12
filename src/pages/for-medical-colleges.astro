@@ -1,0 +1,203 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import FeatureCard from "../components/FeatureCard.astro";
+import FAQItem from "../components/FAQItem.astro";
+import CTASection from "../components/CTASection.astro";
+
+const features = [
+  { need: "E-Logbook (NMC/NBEMS)", feature: "Journals + Plans", description: "Residents log clinical encounters as journal entries with structured templates. Plans module tracks procedures and milestones with deadlines." },
+  { need: "EPA Tracking", feature: "SmartEvidence Framework", description: "Custom EPA frameworks defined as matrix files. Evidence linked to specific EPAs. Entrustment levels tracked per activity over time." },
+  { need: "Workplace-Based Assessments", feature: "Content Templates + Submissions", description: "Structured mini-CEX, CbD, and DOPS forms as content templates. Submitted to assessors via the Submissions module with mentor feedback." },
+  { need: "Reflective Practice", feature: "Journals & Blogs", description: "Residents write reflections on clinical experiences. Tagged to competencies. Mentor comments provide continuous formative feedback." },
+  { need: "Competency Milestones", feature: "SmartEvidence Matrix View", description: "Visual dashboard showing progress across all competencies. Colour-coded entrustment levels. Longitudinal trajectory at a glance." },
+  { need: "Mentor Feedback", feature: "Annotations + Peer Assessment", description: "Mentors annotate portfolio pages with public or private feedback. Structured peer assessment forms for formative evaluation." },
+  { need: "AETCOM Documentation", feature: "Portfolios + Tags", description: "Attitude, ethics, and communication experiences documented as portfolio entries. Tagged with AETCOM competency codes for easy retrieval." },
+  { need: "Thesis & Research", feature: "File Management + Collections", description: "Research documents uploaded with versioning. Organised into thesis collections. Shared with guide for review and feedback." },
+  { need: "NAAC Evidence", feature: "Export + Reports", description: "Institution-wide portfolio data demonstrates OBE outcomes. Export as PDF or HTML for accreditation documentation." },
+  { need: "Mobile Assessment", feature: "ePortfolios Mobile App", description: "React Native companion app for quick EPA assessment entries at the bedside. Syncs with the main platform in real time." },
+  { need: "LMS Integration", feature: "LTI 1.0 + LTI 1.3", description: "Embed ePortfolios within Canvas or Moodle. Single sign-on. Grade passback. Seamless learner experience." },
+  { need: "Progress Monitoring", feature: "Inactivity Reports + Analytics", description: "Monthly cron identifies inactive residents. Admin dashboard shows engagement metrics across departments." },
+];
+
+const deanItems = [
+  { lead: "NMC compliance", text: "Your institution demonstrates CBME implementation with documented evidence, not just paper logbooks." },
+  { lead: "NAAC accreditation", text: "Portfolio data provides Criteria 2 (Teaching-Learning) and Criteria 6 (Governance) evidence automatically." },
+  { lead: "Cost advantage", text: "Open source = no per-user licensing. Self-hosted = no cloud subscription. Typically 80% less than proprietary alternatives." },
+  { lead: "Data sovereignty", text: "Hosted on your infrastructure or Indian cloud providers. Full control over resident and faculty data." },
+  { lead: "Institutional differentiation", text: "Be among the first Indian medical colleges with a comprehensive ePortfolio system." },
+];
+
+const hodItems = [
+  { lead: "EPA tracking", text: "See each resident's entrustment level across all EPAs at a glance." },
+  { lead: "Resident monitoring", text: "Automatic inactivity alerts. Know who's falling behind before it's too late." },
+  { lead: "Mobile assessment", text: "Assess residents at the bedside in under a minute using the mobile app." },
+  { lead: "Custom frameworks", text: "Define competency frameworks specific to your specialty — General Medicine, Surgery, Paediatrics, or any other." },
+  { lead: "Reduced paperwork", text: "No more collecting, filing, and searching through paper logbooks." },
+];
+
+const meuItems = [
+  { lead: "Evidence-based assessment", text: "Built on the same portfolio-based assessment principles endorsed by systematic reviews." },
+  { lead: "Faculty development", text: "Implementing ePortfolios is itself a faculty development exercise in modern assessment methods." },
+  { lead: "Curriculum alignment", text: "Map portfolio activities to curricular competencies to verify coverage." },
+  { lead: "Reflective practice", text: "Structured reflection templates guide residents in developing metacognitive skills." },
+  { lead: "Assessment analytics", text: "Data-driven insights into which competencies residents master quickly and which need more support." },
+];
+
+const faqs = [
+  { question: "Our faculty don't have time for another system", answer: "ePortfolios save time — no more paper logbook collection and review. The mobile app enables assessments in under a minute at the bedside. Asynchronous mentor feedback replaces the need for scheduled meetings." },
+  { question: "It's too expensive for our institution", answer: "Academe ePortfolios is open source — no per-user licensing fees. Self-hosted means no cloud subscription costs. The total cost is infrastructure and training, typically 80% less than proprietary alternatives like MedHub or New Innovations." },
+  { question: "Our residents won't use it", answer: "Studies show students prefer portfolio-based assessment to traditional tests. The mobile app reduces friction to seconds. And when ePortfolios are integrated into mandatory assessment workflows, adoption follows naturally." },
+  { question: "We already have paper logbooks", answer: "NMC's PGMER-2023 mandates e-logbooks. Paper logbooks provide no analytics, no longitudinal tracking, no evidence mapping, and no way for mentors to provide timely feedback. ePortfolios are the mandated evolution." },
+  { question: "What about data security and privacy?", answer: "Self-hosted on your institutional infrastructure or Academe Cloud with Indian data centres. Full control over access policies and data retention. No third-party data sharing. Compliant with upcoming data protection regulations." },
+  { question: "NMC keeps changing requirements — will this system keep up?", answer: "Open source means your institution can update competency frameworks immediately when NMC revises guidelines. No waiting for vendor release cycles. The platform has already adapted through 7 releases in response to regulatory changes." },
+];
+
+const phases = [
+  { phase: "Phase 1", months: "Month 1-3", title: "Pilot", description: "One department, 20-50 residents. Platform setup, framework configuration, faculty training." },
+  { phase: "Phase 2", months: "Month 4-6", title: "Expand", description: "3-5 departments. Refined workflows, content templates, mobile app deployment." },
+  { phase: "Phase 3", months: "Month 7-12", title: "Institution-wide", description: "All PG departments. Full CBME integration, NAAC documentation, analytics." },
+  { phase: "Phase 4", months: "Ongoing", title: "Sustain", description: "Continuous improvement. NMC compliance updates, new frameworks, data-driven curriculum changes." },
+];
+---
+
+<BaseLayout
+  title="For Medical Colleges"
+  description="How Academe ePortfolios meets every CBME requirement for Indian medical colleges. Feature mapping, stakeholder guides, FAQ, and adoption roadmap."
+>
+
+  <!-- Hero -->
+  <section class="bg-gradient-to-b from-white to-surface py-20 md:py-28 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+      <p class="text-sm uppercase tracking-wider font-medium text-accent mb-4">For Indian Medical Colleges</p>
+      <h1 class="text-4xl md:text-5xl font-serif font-bold text-primary leading-tight">
+        Every CBME requirement, one platform
+      </h1>
+      <p class="mt-6 text-lg text-text-muted leading-relaxed max-w-3xl mx-auto">
+        See exactly how Academe ePortfolios maps to NMC mandates, NAAC criteria, and your department's daily assessment needs.
+      </p>
+    </div>
+  </section>
+
+  <!-- Feature-to-Need Mapping -->
+  <section class="bg-white py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <SectionHeading
+        eyebrow="Capabilities"
+        title="Every CBME requirement, addressed"
+        subtitle="Here's exactly how Academe ePortfolios meets each competency-based education need."
+      />
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {features.map((f) => (
+          <FeatureCard need={f.need} feature={f.feature} description={f.description} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- For Deans -->
+  <section id="for-deans" class="bg-surface py-20 px-6">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl md:text-3xl font-serif font-bold text-primary mb-2">For Deans & Principals</h2>
+      <p class="text-lg text-text-muted mb-10">Institutional confidence in CBME compliance</p>
+      <div class="space-y-6">
+        {deanItems.map((item) => (
+          <div class="flex items-start gap-4">
+            <svg class="w-5 h-5 text-accent mt-1 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            <p class="text-text leading-relaxed">
+              <strong class="text-primary">{item.lead}:</strong> {item.text}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- For HoDs -->
+  <section id="for-hods" class="bg-white py-20 px-6">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl md:text-3xl font-serif font-bold text-primary mb-2">For Heads of Department</h2>
+      <p class="text-lg text-text-muted mb-10">Department-level visibility and control</p>
+      <div class="space-y-6">
+        {hodItems.map((item) => (
+          <div class="flex items-start gap-4">
+            <svg class="w-5 h-5 text-accent mt-1 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            <p class="text-text leading-relaxed">
+              <strong class="text-primary">{item.lead}:</strong> {item.text}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- For MEU Heads -->
+  <section id="for-meu" class="bg-surface py-20 px-6">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl md:text-3xl font-serif font-bold text-primary mb-2">For MEU Heads</h2>
+      <p class="text-lg text-text-muted mb-10">Evidence-aligned assessment infrastructure</p>
+      <div class="space-y-6">
+        {meuItems.map((item) => (
+          <div class="flex items-start gap-4">
+            <svg class="w-5 h-5 text-accent mt-1 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            <p class="text-text leading-relaxed">
+              <strong class="text-primary">{item.lead}:</strong> {item.text}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-white py-20 px-6">
+    <div class="max-w-3xl mx-auto">
+      <SectionHeading title="Addressing your concerns" />
+      <div class="border-t border-border">
+        {faqs.map((faq) => (
+          <FAQItem question={faq.question} answer={faq.answer} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Adoption Roadmap -->
+  <section class="bg-surface py-20 px-6">
+    <div class="max-w-5xl mx-auto">
+      <SectionHeading
+        title="Go live in 3 months"
+        subtitle="Most institutions start with one department and expand from there."
+      />
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        {phases.map((phase, i) => (
+          <div class="relative bg-white rounded-xl border border-border p-6">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-semibold">{i + 1}</span>
+              <div>
+                <p class="text-xs text-accent font-medium uppercase tracking-wider">{phase.months}</p>
+                <h3 class="text-base font-semibold text-primary">{phase.title}</h3>
+              </div>
+            </div>
+            <p class="text-sm text-text-muted leading-relaxed">{phase.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <CTASection
+    headline="See it in action at an Indian medical university"
+    primaryLabel="Schedule a Demo"
+    primaryHref="/demo"
+    secondaryLabel="Read Case Studies"
+    secondaryHref="/case-studies"
+  />
+
+</BaseLayout>
