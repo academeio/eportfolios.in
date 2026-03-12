@@ -1,0 +1,138 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import ResourceCard from "../components/ResourceCard.astro";
+import CTASection from "../components/CTASection.astro";
+
+const guides = [
+  {
+    title: "Implementing ePortfolios for CBME: A Practical Guide for Indian Medical Colleges",
+    description: "Step-by-step guidance on deploying ePortfolios aligned with NMC CBME requirements, from pilot to institution-wide rollout.",
+  },
+  {
+    title: "EPA Tracking with ePortfolios: A Department Head's Handbook",
+    description: "How to configure entrustable professional activities, map competencies, and monitor resident progress using ePortfolio tools.",
+  },
+  {
+    title: "ePortfolios and NAAC: Documenting Outcome-Based Education",
+    description: "Leverage ePortfolio data for NAAC accreditation — mapping programme outcomes, collecting evidence, and generating reports.",
+  },
+];
+
+const evidence = [
+  {
+    title: "Portfolio Use in Postgraduate Medical Education",
+    description: "Lim et al. (2023) scoping review of 76 studies. Portfolios nurture professional identity and capture micro-competencies.",
+    href: "https://academic.oup.com/pmj/article/99/1174/913/7039646",
+  },
+  {
+    title: "Reflection as a Learning Tool in GME",
+    description: "Winkel et al. (2017) systematic review of 477 residents. Reflection deepens professional values.",
+    href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5559236/",
+  },
+  {
+    title: "E-Portfolio in Indian Community Medicine",
+    description: "Geetanjali Medical College (2024). 29% knowledge improvement, 92% faculty expansion support.",
+    href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11691100/",
+  },
+  {
+    title: "Family Medicine e-Portfolio in South Africa",
+    description: "BMC Medical Education (2019). National adoption after successful quasi-experimental study.",
+    href: "https://bmcmededuc.biomedcentral.com/articles/10.1186/s12909-019-1692-x",
+  },
+  {
+    title: "ePortfolios in Eight Healthcare Disciplines",
+    description: "Janssens et al. (2022). Eight objectives identified across nursing, medicine, and allied health.",
+    href: "https://www.sciencedirect.com/science/article/pii/S1471595322001329",
+  },
+];
+
+const regulatory = [
+  {
+    title: "NMC CBME Curriculum 2024",
+    description: "Latest competency-based guidelines for undergraduate medical education.",
+    href: "https://medicaldialogues.in/pdf_upload/cbme-guidelines-2024-250434.pdf",
+  },
+  {
+    title: "PGMER-2023 Regulations",
+    description: "Postgraduate medical education regulations introducing e-logbooks and digital assessment.",
+    href: "https://www.nmc.org.in/MCIRest/open/getDocument?path=/Documents/Public/Portal/LatestNews/MER.pdf",
+  },
+  {
+    title: "NBEMS eDoctorLogbook",
+    description: "Digital logbook requirement for DNB/DrNB/FNB trainees.",
+    href: "https://medicaldialogues.in/news/health/nbe/nbems-launches-edoctorlogbook-for-dnb-drnb-fnb-trainees-79735",
+  },
+];
+---
+
+<BaseLayout title="Resources" description="Evidence summaries, guides, and regulatory references for ePortfolios in Indian medical education.">
+
+  <section class="bg-gradient-to-b from-white to-surface py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <SectionHeading
+        eyebrow="Resources"
+        title="Evidence, guides, and regulatory references"
+        subtitle="Everything you need to build the case for ePortfolios at your institution."
+      />
+    </div>
+  </section>
+
+  <!-- Guides & Whitepapers -->
+  <section class="bg-white py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-2xl font-serif font-bold text-primary mb-8">Guides &amp; Whitepapers</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {guides.map((g) => (
+          <ResourceCard title={g.title} description={g.description} type="guide" comingSoon={true} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Evidence Summaries -->
+  <section class="bg-surface py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-2xl font-serif font-bold text-primary mb-8">Evidence Summaries</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {evidence.map((e) => (
+          <ResourceCard title={e.title} description={e.description} type="evidence" href={e.href} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Regulatory References -->
+  <section class="bg-white py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-2xl font-serif font-bold text-primary mb-8">Regulatory References</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {regulatory.map((r) => (
+          <ResourceCard title={r.title} description={r.description} type="regulatory" href={r.href} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Presentations -->
+  <section class="bg-surface py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-2xl font-serif font-bold text-primary mb-8">Presentations</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <ResourceCard
+          title="CBME and ePortfolios — Presentation Deck"
+          description="A ready-to-use slide deck for presenting the case for ePortfolios to your institution's leadership."
+          type="presentation"
+          comingSoon={true}
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <CTASection
+    headline="Need help building the case at your institution?"
+    primaryHref="/demo"
+  />
+
+</BaseLayout>

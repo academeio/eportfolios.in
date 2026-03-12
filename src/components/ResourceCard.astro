@@ -1,0 +1,22 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  type: "guide" | "evidence" | "regulatory" | "presentation";
+  href?: string;
+  comingSoon?: boolean;
+}
+const { title, description, type, href, comingSoon = false } = Astro.props;
+const typeLabels = { guide: "Guide", evidence: "Evidence Summary", regulatory: "Regulatory Reference", presentation: "Presentation" };
+const typeColors = { guide: "bg-primary/10 text-primary", evidence: "bg-accent/10 text-accent", regulatory: "bg-green-100 text-green-800", presentation: "bg-purple-100 text-purple-800" };
+---
+<div class="bg-white rounded-xl p-6 border border-border flex flex-col">
+  <span class:list={["text-xs font-medium px-2 py-1 rounded-full w-fit mb-3", typeColors[type]]}>{typeLabels[type]}</span>
+  <h3 class="text-base font-semibold text-text">{title}</h3>
+  <p class="mt-2 text-sm text-text-muted leading-relaxed flex-1">{description}</p>
+  {comingSoon ? (
+    <p class="mt-4 text-xs text-text-light italic">Coming soon</p>
+  ) : href ? (
+    <a href={href} target="_blank" rel="noopener" class="mt-4 text-sm text-accent font-medium no-underline hover:text-accent-light">Read &rarr;</a>
+  ) : null}
+</div>
