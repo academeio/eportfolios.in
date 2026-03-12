@@ -1,0 +1,265 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import Citation from "../components/Citation.astro";
+import CTASection from "../components/CTASection.astro";
+
+const references = [
+  { number: 1, href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3613304/", title: "Ten Cate O. Entrustability of professional activities and competency-based training. Med Educ. 2005." },
+  { number: 2, href: "https://www.aamc.org/about-us/mission-areas/medical-education/cbme/core-epas", title: "AAMC Core Entrustable Professional Activities for Entering Residency. 2014." },
+  { number: 3, href: "https://academic.oup.com/pmj/article/99/1174/913/7039646", title: "Lim et al. Portfolios in medical education: a scoping review. Postgrad Med J. 2023." },
+  { number: 4, href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5559236/", title: "Winkel et al. Reflection as a learning tool in graduate medical education: a systematic review. J Grad Med Educ. 2017." },
+  { number: 5, href: "https://www.sciencedirect.com/science/article/pii/S1471595322001329", title: "Janssens et al. The use of ePortfolios in health professions education: a scoping review. Nurse Educ Pract. 2022." },
+  { number: 6, href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11691100/", title: "ePortfolio-based learning vs seminars in Indian MBBS students. Geetanjali Medical College. 2024." },
+  { number: 7, href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11306893/", title: "Faculty perceptions of frequent regulatory changes in Indian medical education. 2024." },
+];
+---
+
+<BaseLayout
+  title="Why ePortfolios"
+  description="Evidence-based case for ePortfolios in competency-based medical education. Research, EPAs, and the Indian CBME context."
+>
+
+  <!-- Hero -->
+  <section class="bg-gradient-to-b from-white to-surface py-20 md:py-28 px-6">
+    <div class="max-w-3xl mx-auto text-center">
+      <p class="text-sm uppercase tracking-wider font-medium text-accent mb-4">The Evidence</p>
+      <h1 class="text-4xl md:text-5xl font-serif font-bold text-primary leading-tight">
+        Why ePortfolios?
+      </h1>
+      <p class="mt-6 text-lg text-text-muted leading-relaxed">
+        The evidence-based case for portfolio-based assessment in competency-based medical education.
+      </p>
+    </div>
+  </section>
+
+  <!-- Introduction -->
+  <section class="bg-white py-16 px-6">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-2xl md:text-3xl font-serif font-bold text-primary mb-8">From time-based training to demonstrated competency</h2>
+      <div class="prose-custom">
+        <p>
+          Medical education has, for over a century, measured competence by time. Complete three years of residency, attend a prescribed number of lectures, and rotate through specified departments — and you are deemed competent. The implicit assumption is that exposure equals ability. But decades of educational research have shown that this assumption is unreliable. Two residents who complete identical rotations can emerge with vastly different levels of clinical capability.
+        </p>
+        <p>
+          Competency-based medical education (CBME) challenges this paradigm. Instead of asking "how long did you train?", it asks "what can you do?" The focus shifts from inputs (time, attendance) to outcomes (observable, measurable clinical activities). This is not merely a philosophical distinction — it fundamentally changes what assessment tools are required. When the goal is to document growth over time, you need a tool that can capture longitudinal evidence, not just snapshots.
+        </p>
+        <p>
+          Traditional assessment methods — MCQs, vivas, end-of-rotation examinations — measure knowledge at a single point in time. They are useful, but insufficient. They cannot capture how a resident's clinical reasoning evolves, how their procedural skills improve with practice, or how their professional identity matures through reflection. An ePortfolio is the only tool that can capture this trajectory: a living, growing repository of evidence that demonstrates competency development over months and years.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- What CBME Requires -->
+  <section class="bg-surface py-16 px-6">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-2xl md:text-3xl font-serif font-bold text-primary mb-8">What CBME requires that paper cannot deliver</h2>
+      <div class="space-y-6">
+        <div class="flex items-start gap-4">
+          <span class="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-semibold">1</span>
+          <div>
+            <h3 class="text-base font-semibold text-text">Longitudinal tracking</h3>
+            <p class="mt-1 text-sm text-text-muted leading-relaxed">Competency develops over months and years. A single examination cannot capture whether a resident who struggled with central line insertion in July can now perform it independently in March. Paper logbooks record events but cannot reveal trajectories.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <span class="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-semibold">2</span>
+          <div>
+            <h3 class="text-base font-semibold text-text">Multiple data points</h3>
+            <p class="mt-1 text-sm text-text-muted leading-relaxed">Workplace-based assessments — mini-CEX, CbD, DOPS — accumulate over time. Each individual assessment is a data point; the pattern across dozens of assessments is what reveals competency. Aggregating and visualising these patterns requires a digital system.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <span class="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-semibold">3</span>
+          <div>
+            <h3 class="text-base font-semibold text-text">Reflective practice</h3>
+            <p class="mt-1 text-sm text-text-muted leading-relaxed">Reflection is not navel-gazing — it is a documented process of self-awareness and growth. When a resident writes about a difficult clinical encounter and their mentor responds, both parties learn. This asynchronous, documented dialogue is impossible with paper.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <span class="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-semibold">4</span>
+          <div>
+            <h3 class="text-base font-semibold text-text">Mentor feedback loops</h3>
+            <p class="mt-1 text-sm text-text-muted leading-relaxed">Effective mentorship requires asynchronous, documented guidance. A mentor who can review a resident's portfolio entry, add annotations, and suggest improvements — without needing to schedule a meeting — provides more frequent and actionable feedback.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <span class="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-semibold">5</span>
+          <div>
+            <h3 class="text-base font-semibold text-text">Evidence aggregation</h3>
+            <p class="mt-1 text-sm text-text-muted leading-relaxed">Each clinical experience, reflection, assessment, and feedback item is a piece of evidence. Linking these to specific Entrustable Professional Activities (EPAs) and competencies creates a comprehensive picture that no paper system can assemble.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EPAs -->
+  <section class="bg-white py-16 px-6">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-2xl md:text-3xl font-serif font-bold text-primary mb-8">EPAs: the core unit of modern assessment</h2>
+      <div class="prose-custom">
+        <p>
+          Entrustable Professional Activities (EPAs) were introduced by Prof. Olle ten Cate in 2005 as units of professional practice that can be entrusted to a trainee once they have demonstrated sufficient competence.<Citation number={1} href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3613304/" title="Ten Cate O. Entrustability of professional activities and competency-based training." /> Unlike competencies, which describe individual qualities (medical knowledge, communication, professionalism), EPAs describe real work — "manage a patient with acute chest pain" or "obtain informed consent for a procedure." Each EPA draws on multiple competencies simultaneously, making them a natural unit for workplace-based assessment.
+        </p>
+        <p>
+          The concept of entrustment is what makes EPAs powerful. Rather than a binary pass/fail, entrustment is graduated: a trainee progresses from observation to independent practice and eventually to supervising others.
+        </p>
+      </div>
+    </div>
+
+    <!-- Entrustment levels table -->
+    <div class="max-w-5xl mx-auto mt-10">
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm border border-border rounded-xl overflow-hidden">
+          <thead>
+            <tr class="bg-primary text-white">
+              <th class="px-6 py-3 text-left font-semibold">Level</th>
+              <th class="px-6 py-3 text-left font-semibold">Description</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-border">
+            <tr class="bg-white"><td class="px-6 py-3 font-medium text-primary">1</td><td class="px-6 py-3 text-text-muted">Observe only</td></tr>
+            <tr class="bg-surface"><td class="px-6 py-3 font-medium text-primary">2</td><td class="px-6 py-3 text-text-muted">Perform with direct supervision</td></tr>
+            <tr class="bg-white"><td class="px-6 py-3 font-medium text-primary">3</td><td class="px-6 py-3 text-text-muted">Perform with indirect supervision</td></tr>
+            <tr class="bg-surface"><td class="px-6 py-3 font-medium text-primary">4</td><td class="px-6 py-3 text-text-muted">Perform independently</td></tr>
+            <tr class="bg-white"><td class="px-6 py-3 font-medium text-primary">5</td><td class="px-6 py-3 text-text-muted">Supervise others</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="max-w-3xl mx-auto mt-10">
+      <div class="prose-custom">
+        <p>
+          The EPA-competency matrix is a critical conceptual tool. EPAs sit on one axis (work units), competencies on the other (individual qualities). Each EPA draws on a specific combination of competencies. Tracking a trainee's progress across this matrix requires a system that can link evidence to both EPAs and competencies — precisely what an ePortfolio provides.
+        </p>
+        <p>
+          In 2014, the AAMC defined 13 Core EPAs for entering residency, establishing a reference framework that has since been adopted and adapted worldwide.<Citation number={2} href="https://www.aamc.org/about-us/mission-areas/medical-education/cbme/core-epas" title="AAMC Core Entrustable Professional Activities for Entering Residency." /> India's NMC has incorporated EPA-based assessment into its CBME curriculum, making EPA tracking a practical requirement for every medical college.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- What the Evidence Says -->
+  <section class="bg-surface py-16 px-6">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-2xl md:text-3xl font-serif font-bold text-primary mb-8">What the evidence says</h2>
+      <div class="prose-custom">
+        <p>
+          The case for portfolios in medical education is not theoretical — it is grounded in a substantial and growing body of evidence. A 2023 scoping review by Lim and colleagues examined 76 studies on portfolio use in medical education and found that portfolios serve a dual purpose: they nurture professional identity formation while simultaneously capturing context-specific micro-competencies that traditional assessments miss entirely.<Citation number={3} href="https://academic.oup.com/pmj/article/99/1174/913/7039646" title="Lim et al. Portfolios in medical education: a scoping review. 2023." /> The review highlighted that portfolios are particularly effective at documenting the soft, longitudinal aspects of medical training — the very aspects that CBME prioritises but that examinations cannot measure.
+        </p>
+        <p>
+          Reflection, often dismissed as a "soft" educational intervention, has robust evidence behind it. Winkel and colleagues conducted a systematic review in 2017, analysing 16 studies covering 477 residents and fellows. They found that structured reflection increased the learning of complex subjects and deepened professional values — outcomes that directly align with the goals of competency-based training.<Citation number={4} href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5559236/" title="Winkel et al. Reflection as a learning tool in graduate medical education. 2017." /> Crucially, the evidence showed that reflection was most effective when it was documented and received mentor feedback — precisely the workflow an ePortfolio supports.
+        </p>
+        <p>
+          The breadth of ePortfolio applications in healthcare education was mapped by Janssens and colleagues in 2022, who identified eight distinct objectives of ePortfolio use: competency documentation, reflection, feedback, interprofessional collaboration, continuing professional development, bridging theory and practice, employment readiness, and certification.<Citation number={5} href="https://www.sciencedirect.com/science/article/pii/S1471595322001329" title="Janssens et al. ePortfolios in health professions education. 2022." /> This taxonomy demonstrates that ePortfolios are not single-purpose tools but comprehensive platforms that support the full spectrum of professional development.
+        </p>
+        <p>
+          Evidence from India is emerging and encouraging. At Geetanjali Medical College in Rajasthan, a 2024 study compared ePortfolio-based learning with traditional seminar-based teaching among 48 MBBS students. The ePortfolio group showed a 29% improvement in knowledge scores compared to 19% through seminars. Faculty satisfaction was 88%, and 92% of faculty recommended expanding ePortfolio use to other subjects.<Citation number={6} href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11691100/" title="ePortfolio-based learning vs seminars in Indian MBBS students. 2024." /> These findings suggest that ePortfolios are not only effective in Western medical education systems but are equally applicable — and perhaps more needed — in the Indian context.
+        </p>
+      </div>
+    </div>
+
+    <!-- Comparison callout box -->
+    <div class="max-w-5xl mx-auto mt-12">
+      <div class="bg-surface-alt rounded-xl p-8">
+        <h3 class="text-lg font-serif font-bold text-primary mb-6">Portfolio-based vs traditional assessment</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm border border-border rounded-lg overflow-hidden">
+            <thead>
+              <tr class="bg-primary text-white">
+                <th class="px-6 py-3 text-left font-semibold">Dimension</th>
+                <th class="px-6 py-3 text-left font-semibold">Traditional</th>
+                <th class="px-6 py-3 text-left font-semibold">Portfolio-Based</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-border">
+              <tr class="bg-white">
+                <td class="px-6 py-3 font-medium text-text">What it measures</td>
+                <td class="px-6 py-3 text-text-muted">Knowledge at a point in time</td>
+                <td class="px-6 py-3 text-text-muted">Competency development over time</td>
+              </tr>
+              <tr class="bg-surface">
+                <td class="px-6 py-3 font-medium text-text">Attitudes & professionalism</td>
+                <td class="px-6 py-3 text-text-muted">Difficult to assess</td>
+                <td class="px-6 py-3 text-text-muted">Natural fit</td>
+              </tr>
+              <tr class="bg-white">
+                <td class="px-6 py-3 font-medium text-text">Feedback</td>
+                <td class="px-6 py-3 text-text-muted">End-of-rotation, summative</td>
+                <td class="px-6 py-3 text-text-muted">Continuous, formative</td>
+              </tr>
+              <tr class="bg-surface">
+                <td class="px-6 py-3 font-medium text-text">Learner agency</td>
+                <td class="px-6 py-3 text-text-muted">Passive</td>
+                <td class="px-6 py-3 text-text-muted">Active — learner curates evidence</td>
+              </tr>
+              <tr class="bg-white">
+                <td class="px-6 py-3 font-medium text-text">Mentor role</td>
+                <td class="px-6 py-3 text-text-muted">Examiner</td>
+                <td class="px-6 py-3 text-text-muted">Coach and guide</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Indian Context -->
+  <section class="bg-white py-16 px-6">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-2xl md:text-3xl font-serif font-bold text-primary mb-8">The Indian context</h2>
+      <div class="prose-custom">
+        <p>
+          India's National Medical Commission (NMC) mandated competency-based medical education from 2019 onwards, and the Postgraduate Medical Education Regulations (PGMER-2023) explicitly require e-logbooks for postgraduate trainees. This is not a suggestion — it is a regulatory mandate. Yet the current reality across India's 706+ medical colleges is that the vast majority still rely on paper logbooks, manual attendance registers, and end-of-posting assessments.
+        </p>
+        <p>
+          The gap between regulatory expectation and ground reality is significant. NMC expects documented EPA tracking, competency mapping, and reflective practice. Most institutions have none of the infrastructure to deliver this. The challenge is compounded by frequent regulatory changes: a 2024 study found that 81% of faculty were unhappy with the pace and frequency of regulatory changes in Indian medical education.<Citation number={7} href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11306893/" title="Faculty perceptions of regulatory changes in Indian medical education. 2024." /> But this finding actually strengthens the case for ePortfolios — a digital platform can adapt to regulatory changes far faster than paper systems. When NMC revises competency frameworks or assessment requirements, an ePortfolio platform can update its templates and frameworks within days. A paper logbook redesign takes months of printing and distribution.
+        </p>
+        <p>
+          India currently has no dominant ePortfolio platform for medical education. Global platforms like MedHub and New Innovations are designed for ACGME requirements and priced for American institutions — typically USD 15-50 per user per year. For a large Indian medical university with thousands of trainees, these costs are prohibitive. This creates an opportunity: an open-source, regulation-aware ePortfolio platform built specifically for Indian medical colleges can fill a gap that no existing solution addresses.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- References -->
+  <section class="bg-surface py-16 px-6">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-2xl md:text-3xl font-serif font-bold text-primary mb-8">References</h2>
+      <ol class="space-y-4 list-decimal list-outside pl-6">
+        {references.map((ref) => (
+          <li class="text-sm text-text-muted leading-relaxed">
+            <a href={ref.href} target="_blank" rel="noopener noreferrer" class="text-accent hover:text-accent-light no-underline">
+              {ref.title}
+            </a>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <CTASection
+    headline="See how these capabilities map to your department's needs"
+    primaryLabel="For Medical Colleges"
+    primaryHref="/for-medical-colleges"
+    secondaryLabel="Schedule a Demo"
+    secondaryHref="/demo"
+  />
+
+</BaseLayout>
+
+<style>
+  .prose-custom p {
+    color: var(--color-text);
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+  }
+  .prose-custom p:last-child {
+    margin-bottom: 0;
+  }
+</style>
