@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Academe ePortfolios — For Indian Medical Colleges</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap');
+
+    :root {
+      --primary: #1e3a5f;
+      --primary-light: #2a4d7a;
+      --accent: #c9a84c;
+      --text: #2d3748;
+      --text-muted: #64748b;
+      --surface: #f8f7f4;
+      --border: #e2e0db;
+      --white: #ffffff;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      background: var(--white);
+    }
+
+    @media print {
+      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .page { page-break-after: always; break-after: page; }
+      .page:last-child { page-break-after: avoid; break-after: avoid; }
+      .no-print { display: none !important; }
+    }
+
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @media screen {
+      .page {
+        margin: 20px auto;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+      }
+    }
+
+    h1, h2, h3, h4 { font-family: 'Merriweather', serif; color: var(--primary); }
+
+    /* ── Page 1: Cover ── */
+    .cover {
+      background: linear-gradient(135deg, var(--primary) 0%, #152a45 100%);
+      color: var(--white);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px 56px;
+    }
+    .cover h1 { color: var(--white); font-size: 36px; line-height: 1.25; margin-bottom: 20px; }
+    .cover .subtitle { font-size: 18px; color: rgba(255,255,255,0.85); line-height: 1.6; max-width: 440px; }
+    .cover .accent-line { width: 64px; height: 4px; background: var(--accent); margin: 32px 0; border-radius: 2px; }
+    .cover .badge-row { display: flex; gap: 16px; margin-top: 40px; flex-wrap: wrap; }
+    .cover .badge {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .cover .logo-area {
+      position: absolute;
+      bottom: 56px;
+      left: 56px;
+      right: 56px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .cover .logo-text { font-family: 'Merriweather', serif; font-size: 20px; font-weight: 700; }
+    .cover .logo-text span { font-family: 'Inter', sans-serif; font-weight: 400; font-size: 13px; color: var(--accent); margin-left: 6px; }
+    .cover .site { font-size: 13px; color: rgba(255,255,255,0.6); }
+
+    /* ── Page 2: The Challenge + Solution ── */
+    .content-page {
+      padding: 48px 56px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .content-page h2 { font-size: 22px; margin-bottom: 16px; }
+    .content-page h3 { font-size: 15px; margin-bottom: 8px; font-family: 'Inter', sans-serif; font-weight: 700; }
+    .content-page p { font-size: 13px; color: var(--text-muted); line-height: 1.7; margin-bottom: 12px; }
+
+    .eyebrow {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .challenge-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0 32px;
+    }
+    .challenge-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .challenge-card .number {
+      display: inline-flex;
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 700;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+    .challenge-card h3 { font-size: 13px; margin-bottom: 6px; }
+    .challenge-card p { font-size: 11.5px; margin-bottom: 0; }
+
+    .divider { height: 1px; background: var(--border); margin: 28px 0; }
+
+    .solution-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 14px;
+      background: var(--surface);
+      border-radius: 8px;
+    }
+    .feature-item .check {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 15px;
+      flex-shrink: 0;
+      margin-top: -1px;
+    }
+    .feature-item .text { font-size: 12px; color: var(--text); font-weight: 500; }
+    .feature-item .sub { font-size: 11px; color: var(--text-muted); font-weight: 400; }
+
+    /* ── Page 3: Evidence + Production Proven ── */
+    .stat-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+    .stat-card {
+      text-align: center;
+      background: var(--primary);
+      color: var(--white);
+      border-radius: 12px;
+      padding: 24px 16px;
+    }
+    .stat-card .value { font-family: 'Merriweather', serif; font-size: 28px; font-weight: 700; }
+    .stat-card .label { font-size: 11px; margin-top: 6px; color: rgba(255,255,255,0.8); line-height: 1.4; }
+
+    .evidence-list { list-style: none; margin: 16px 0; }
+    .evidence-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 12.5px;
+    }
+    .evidence-list li:last-child { border-bottom: none; }
+    .evidence-list .bullet {
+      flex-shrink: 0;
+      width: 20px; height: 20px;
+      background: var(--accent);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      margin-top: 1px;
+    }
+    .evidence-list .cite { color: var(--text-muted); font-size: 11px; font-style: italic; }
+
+    .institution-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .institution-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .institution-card h3 { font-size: 14px; margin-bottom: 4px; }
+    .institution-card .location { font-size: 11px; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+    .institution-card .metrics { display: flex; gap: 24px; }
+    .institution-card .metric-val { font-family: 'Merriweather', serif; font-size: 22px; font-weight: 700; color: var(--primary); }
+    .institution-card .metric-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+
+    .quote-box {
+      background: var(--surface);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 12px 12px 0;
+      padding: 20px 24px;
+      margin-top: 20px;
+    }
+    .quote-box p { font-size: 13px; font-style: italic; color: var(--text); margin-bottom: 8px; line-height: 1.6; }
+    .quote-box .attribution { font-size: 11px; font-style: normal; font-weight: 600; color: var(--primary); }
+
+    /* ── Page 4: How It Works + CTA ── */
+    .phase-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+    .phase-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .phase-card .phase-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .phase-card .phase-num {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .phase-card .phase-title { font-size: 14px; font-weight: 700; color: var(--primary); }
+    .phase-card .phase-time { font-size: 11px; color: var(--accent); font-weight: 600; }
+    .phase-card ul { list-style: none; }
+    .phase-card ul li {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      padding: 3px 0;
+      padding-left: 16px;
+      position: relative;
+    }
+    .phase-card ul li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    .differentiator-bar {
+      background: var(--primary);
+      color: var(--white);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin: 24px 0;
+      text-align: center;
+    }
+    .differentiator-bar p { color: rgba(255,255,255,0.9); font-size: 13px; margin-bottom: 0; }
+    .differentiator-bar strong { color: var(--accent); }
+
+    .regulatory-strip {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin: 20px 0;
+    }
+    .regulatory-strip .reg-item {
+      text-align: center;
+    }
+    .regulatory-strip .reg-name { font-size: 14px; font-weight: 700; color: var(--primary); }
+    .regulatory-strip .reg-desc { font-size: 10px; color: var(--text-muted); }
+
+    .cta-box {
+      background: linear-gradient(135deg, var(--primary) 0%, #152a45 100%);
+      color: var(--white);
+      border-radius: 16px;
+      padding: 40px;
+      text-align: center;
+      margin-top: auto;
+    }
+    .cta-box h2 { color: var(--white); font-size: 22px; margin-bottom: 12px; }
+    .cta-box p { font-size: 13px; color: rgba(255,255,255,0.8); margin-bottom: 20px; }
+    .cta-box .cta-details {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      font-size: 13px;
+    }
+    .cta-box .cta-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); font-weight: 600; margin-bottom: 4px; }
+    .cta-box .cta-value { font-weight: 600; }
+
+    .page-footer {
+      position: absolute;
+      bottom: 24px;
+      left: 56px;
+      right: 56px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+    .page-footer a { color: var(--accent); text-decoration: none; }
+
+    /* Print button */
+    .print-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: var(--primary);
+      color: white;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      z-index: 100;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+    }
+    .print-bar button {
+      background: var(--accent);
+      color: var(--primary);
+      border: none;
+      padding: 8px 24px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+    }
+    .print-bar button:hover { opacity: 0.9; }
+    @media screen { body { padding-top: 52px; } }
+  </style>
+</head>
+<body>
+
+  <!-- Print bar (screen only) -->
+  <div class="print-bar no-print">
+    <span>Academe ePortfolios — Brochure</span>
+    <button onclick="window.print()">Save as PDF</button>
+  </div>
+
+  <!-- PAGE 1: Cover -->
+  <div class="page cover">
+    <div>
+      <p class="eyebrow" style="color: var(--accent); margin-bottom: 24px;">For Indian Medical Colleges</p>
+      <h1>The ePortfolio platform<br>your CBME programme needs</h1>
+      <div class="accent-line"></div>
+      <p class="subtitle">
+        NMC mandates competency-based education and e-logbooks. Academe ePortfolios gives your residents EPA tracking, reflective practice, and competency documentation — in one open-source platform, built for India.
+      </p>
+      <div class="badge-row">
+        <div class="badge">NMC CBME 2024</div>
+        <div class="badge">PGMER-2023</div>
+        <div class="badge">NBEMS Compatible</div>
+        <div class="badge">NAAC Ready</div>
+      </div>
+    </div>
+    <div class="logo-area">
+      <div>
+        <div class="logo-text">Academe<span>ePortfolios</span></div>
+        <div class="site" style="margin-top: 4px;">By Academe Research, Inc.</div>
+      </div>
+      <div class="site">eportfolios.in</div>
+    </div>
+  </div>
+
+  <!-- PAGE 2: Challenge + Solution -->
+  <div class="page content-page">
+    <div>
+      <p class="eyebrow">The challenge</p>
+      <h2>Paper logbooks cannot deliver what CBME demands</h2>
+      <p>India's 706+ medical colleges face a regulatory mandate with no adequate tools. NMC requires competency-based training and e-logbooks. NAAC demands outcome-based documentation. Most institutions still rely on paper.</p>
+    </div>
+
+    <div class="challenge-grid">
+      <div class="challenge-card">
+        <div class="number">1</div>
+        <h3>NMC mandates e-logbooks</h3>
+        <p>PGMER-2023 requires digital logbooks for PG trainees. Paper logbooks provide no analytics, no longitudinal tracking, and no evidence mapping.</p>
+      </div>
+      <div class="challenge-card">
+        <div class="number">2</div>
+        <h3>Competency is longitudinal</h3>
+        <p>EPAs require multiple workplace-based assessments over months. Paper cannot aggregate or visualise trends across dozens of assessments.</p>
+      </div>
+      <div class="challenge-card">
+        <div class="number">3</div>
+        <h3>No Indian platform exists</h3>
+        <p>Global platforms cost USD 15–50/user/year and align with ACGME, not NMC. India needs an affordable, regulation-aware solution.</p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div>
+      <p class="eyebrow">The solution</p>
+      <h2>Academe ePortfolios</h2>
+      <p>An open-source ePortfolio platform purpose-built for competency-based medical education in India. Delivered as a turnkey managed service on Academe Cloud with affordable per-user pricing.</p>
+    </div>
+
+    <div class="solution-features">
+      <div class="feature-item">
+        <div class="check">&#10003;</div>
+        <div><div class="text">EPA Tracking</div><div class="sub">SmartEvidence competency matrix</div></div>
+      </div>
+      <div class="feature-item">
+        <div class="check">&#10003;</div>
+        <div><div class="text">Reflective Journals</div><div class="sub">Structured writing + mentor feedback</div></div>
+      </div>
+      <div class="feature-item">
+        <div class="check">&#10003;</div>
+        <div><div class="text">E-Logbook</div><div class="sub">NMC/NBEMS-compliant digital logbook</div></div>
+      </div>
+      <div class="feature-item">
+        <div class="check">&#10003;</div>
+        <div><div class="text">Mobile App</div><div class="sub">Bedside assessment on any device</div></div>
+      </div>
+      <div class="feature-item">
+        <div class="check">&#10003;</div>
+        <div><div class="text">Open Source (GPL v3)</div><div class="sub">No vendor lock-in, full data control</div></div>
+      </div>
+      <div class="feature-item">
+        <div class="check">&#10003;</div>
+        <div><div class="text">LMS Integration</div><div class="sub">LTI 1.0 + 1.3 (Canvas, Moodle)</div></div>
+      </div>
+      <div class="feature-item">
+        <div class="check">&#10003;</div>
+        <div><div class="text">Dedicated Server</div><div class="sub">Not shared hosting — total data privacy</div></div>
+      </div>
+      <div class="feature-item">
+        <div class="check">&#10003;</div>
+        <div><div class="text">Departmental Hub</div><div class="sub">Noticeboards, case discussions, journal clubs</div></div>
+      </div>
+      <div class="feature-item">
+        <div class="check">&#10003;</div>
+        <div><div class="text">NAAC Ready</div><div class="sub">OBE documentation and export</div></div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span>Academe ePortfolios</span>
+      <span><a href="https://eportfolios.in">eportfolios.in</a></span>
+      <span>Page 2</span>
+    </div>
+  </div>
+
+  <!-- PAGE 3: Evidence + Production Proven -->
+  <div class="page content-page">
+    <div>
+      <p class="eyebrow">Evidence</p>
+      <h2>What the research says</h2>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="value">29%</div>
+        <div class="label">knowledge improvement over traditional methods in Indian students</div>
+      </div>
+      <div class="stat-card">
+        <div class="value">92%</div>
+        <div class="label">of faculty wanted e-portfolios expanded to other subjects</div>
+      </div>
+      <div class="stat-card">
+        <div class="value">Since 2015</div>
+        <div class="label">India's first CBME programme with e-portfolio monitoring (SBV)</div>
+      </div>
+    </div>
+
+    <ul class="evidence-list">
+      <li>
+        <div class="bullet">1</div>
+        <div>
+          <strong>CoBALT Model at Sri Balaji Vidyapeeth</strong> — first institution in India to formally introduce competency-based PG training with EPAs, Dreyfus-level entrustment, multisource feedback, and e-portfolio monitoring. Running successfully since 2015.
+          <br><span class="cite">Ananthakrishnan et al., Natl Med J India, 2019</span>
+        </div>
+      </li>
+      <li>
+        <div class="bullet">2</div>
+        <div>
+          <strong>Descriptive rubrics for EPA assessment</strong> — advances the CoBALT model with rubrics that improve objectivity in entrustment decisions, moving beyond the generic Dreyfus scale.
+          <br><span class="cite">Ananthakrishnan et al., Natl Med J India, 2023</span>
+        </div>
+      </li>
+      <li>
+        <div class="bullet">3</div>
+        <div>
+          <strong>Scoping review of 76 studies</strong> — portfolios nurture professional identity and capture context-specific micro-competencies that traditional assessments miss entirely.
+          <br><span class="cite">Lim et al., Postgrad Med J, 2023</span>
+        </div>
+      </li>
+      <li>
+        <div class="bullet">4</div>
+        <div>
+          <strong>E-portfolio vs seminars in Indian MBBS students</strong> — 29% knowledge improvement with e-portfolio, 88% faculty satisfaction, 92% wanted expansion to other subjects.
+          <br><span class="cite">Geetanjali Medical College, PMC, 2024</span>
+        </div>
+      </li>
+    </ul>
+
+    <div class="divider"></div>
+
+    <div>
+      <p class="eyebrow">Production proven</p>
+      <h2>Trusted by 4,300+ users</h2>
+    </div>
+
+    <div class="institution-row">
+      <div class="institution-card">
+        <h3>Sri Balaji Vidyapeeth</h3>
+        <div class="location">Pondicherry &bull; Since 2017</div>
+        <div class="metrics">
+          <div><div class="metric-val">3,611</div><div class="metric-label">Users</div></div>
+          <div><div class="metric-val">131K+</div><div class="metric-label">Pages</div></div>
+          <div><div class="metric-val">1.66M</div><div class="metric-label">Tags</div></div>
+        </div>
+      </div>
+      <div class="institution-card">
+        <h3>Arupadai Veedu Medical College</h3>
+        <div class="location">Pondicherry &bull; Since 2021</div>
+        <div class="metrics">
+          <div><div class="metric-val">710</div><div class="metric-label">Users</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="quote-box">
+      <p>"ePortfolios for Postgraduate Training — we call it CoBALT (Competency Based Learning and Training) — was presented as Institutional Distinctiveness for our second NAAC Assessment Cycle and it was given full marks for execution and sustained use."</p>
+      <div class="attribution">— Prof. Ananthakrishnan N, Dean of Academics, Sri Balaji Vidyapeeth</div>
+    </div>
+
+    <div class="page-footer">
+      <span>Academe ePortfolios</span>
+      <span><a href="https://eportfolios.in">eportfolios.in</a></span>
+      <span>Page 3</span>
+    </div>
+  </div>
+
+  <!-- PAGE 4: Implementation + CTA -->
+  <div class="page content-page">
+    <div>
+      <p class="eyebrow">Implementation</p>
+      <h2>Go live in one month</h2>
+      <p>Every step guided by medical educationists — not IT consultants — who understand CBME, EPAs, and your assessment workflows.</p>
+    </div>
+
+    <div class="phase-grid">
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-num">1</div>
+          <div><div class="phase-title">Onboarding & Setup</div><div class="phase-time">Week 1–2</div></div>
+        </div>
+        <ul>
+          <li>Excel templates for departments, faculty, residents</li>
+          <li>Institutional branding, logo, custom colours</li>
+          <li>All user accounts created and configured</li>
+        </ul>
+      </div>
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-num">2</div>
+          <div><div class="phase-title">Training & Induction</div><div class="phase-time">Week 3–4</div></div>
+        </div>
+        <ul>
+          <li>Separate sessions for faculty and residents</li>
+          <li>Hands-on: portfolios, assessments, mobile app</li>
+          <li>Daily troubleshooting until users are comfortable</li>
+        </ul>
+      </div>
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-num">3</div>
+          <div><div class="phase-title">Review & Stabilise</div><div class="phase-time">Month 3</div></div>
+        </div>
+        <ul>
+          <li>Progress review with Dean, MEU, PG Coordinator</li>
+          <li>Usage analytics and adoption support</li>
+          <li>ePortfolio Coordinator appointment</li>
+        </ul>
+      </div>
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-num">4</div>
+          <div><div class="phase-title">Ongoing Operations</div><div class="phase-time">Yearly</div></div>
+        </div>
+        <ul>
+          <li>Annual batch induction for new residents</li>
+          <li>Faculty turnover management</li>
+          <li>Regulatory updates, research collaboration</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="differentiator-bar">
+      <p>Implementation led by <strong>Medical Educationists and Medical Informaticians</strong> — professionals who speak your language: EPAs, milestones, entrustment levels, AETCOM, MSF.</p>
+    </div>
+
+    <div>
+      <p class="eyebrow">Regulatory alignment</p>
+    </div>
+    <div class="regulatory-strip">
+      <div class="reg-item"><div class="reg-name">NMC</div><div class="reg-desc">CBME 2024 &amp; PGMER-2023</div></div>
+      <div class="reg-item"><div class="reg-name">NBEMS</div><div class="reg-desc">eDoctorLogbook compatible</div></div>
+      <div class="reg-item"><div class="reg-name">NAAC</div><div class="reg-desc">OBE documentation</div></div>
+      <div class="reg-item"><div class="reg-name">NABH</div><div class="reg-desc">Training evidence</div></div>
+    </div>
+
+    <div class="cta-box">
+      <h2>See it in action at your institution</h2>
+      <p>A 30-minute walkthrough tailored to your departments.<br>See EPA tracking, competency frameworks, and resident monitoring live.</p>
+      <div class="cta-details">
+        <div>
+          <div class="cta-label">Website</div>
+          <div class="cta-value">eportfolios.in</div>
+        </div>
+        <div>
+          <div class="cta-label">Email</div>
+          <div class="cta-value">mail@academe.in</div>
+        </div>
+        <div>
+          <div class="cta-label">Demo</div>
+          <div class="cta-value">eportfolios.in/demo</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-footer" style="color: rgba(255,255,255,0.5);">
+      <span>&copy; 2026 Academe Research, Inc.</span>
+      <span>Academe ePortfolios is open-source software (GPL v3)</span>
+    </div>
+  </div>
+
+</body>
+</html>
