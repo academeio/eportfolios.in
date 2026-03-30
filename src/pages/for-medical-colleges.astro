@@ -66,6 +66,18 @@ const phases = [
 <BaseLayout
   title="For Medical Colleges"
   description="How Academe ePortfolios meets every CBME requirement for Indian medical colleges. Feature mapping, stakeholder guides, FAQ, and adoption roadmap."
+  jsonLd={{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer,
+      },
+    })),
+  }}
 >
 
   <!-- Hero -->
@@ -204,7 +216,7 @@ const phases = [
     primaryLabel="Schedule a Demo"
     primaryHref="/demo"
     secondaryLabel="Read Case Studies"
-    secondaryHref="/case-studies"
+    secondaryHref="/resources/case-studies/"
   />
 
 </BaseLayout>
