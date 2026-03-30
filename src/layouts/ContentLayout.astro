@@ -1,0 +1,110 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import TagList from "../components/TagList.astro";
+import TableOfContents from "../components/TableOfContents.astro";
+import CTASection from "../components/CTASection.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  category: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  tags: string[];
+  author: string;
+  headings: { depth: number; slug: string; text: string }[];
+}
+
+const { title, description, category, pubDate, updatedDate, tags, author, headings } = Astro.props;
+
+const categoryLabels: Record<string, string> = {
+  guides: "Guide",
+  evidence: "Evidence Summary",
+  regulatory: "Regulatory Reference",
+  glossary: "Glossary",
+  "case-studies": "Case Study",
+};
+const categoryColors: Record<string, string> = {
+  guides: "bg-primary/10 text-primary",
+  evidence: "bg-accent/10 text-accent",
+  regulatory: "bg-green-100 text-green-800",
+  glossary: "bg-purple-100 text-purple-800",
+  "case-studies": "bg-blue-100 text-blue-800",
+};
+
+const dateStr = pubDate.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+const updatedStr = updatedDate?.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "author": { "@type": "Organization", "name": "Academe Research, Inc" },
+  "publisher": { "@type": "Organization", "name": "Academe Research, Inc" },
+  "datePublished": pubDate.toISOString(),
+  ...(updatedDate && { "dateModified": updatedDate.toISOString() }),
+  "mainEntityOfPage": `https://eportfolios.in/resources/${category}/${Astro.url.pathname.split("/").pop()}`,
+};
+---
+<BaseLayout title={title} description={description} jsonLd={articleJsonLd}>
+  <article class="py-16 px-6">
+    <div class="max-w-3xl mx-auto">
+      <!-- Breadcrumb -->
+      <nav class="text-sm text-text-muted mb-8">
+        <a href="/" class="hover:text-primary no-underline">Home</a>
+        <span class="mx-2">/</span>
+        <a href="/resources/" class="hover:text-primary no-underline">Resources</a>
+        <span class="mx-2">/</span>
+        <a href={`/resources/${category}/`} class="hover:text-primary no-underline">{categoryLabels[category]}</a>
+      </nav>
+
+      <!-- Header -->
+      <header class="mb-10">
+        <div class="flex items-center gap-3 mb-4">
+          <span class:list={["text-xs font-medium px-2.5 py-1 rounded-full", categoryColors[category] || "bg-gray-100 text-gray-800"]}>
+            {categoryLabels[category] || category}
+          </span>
+          <span class="text-sm text-text-light">{dateStr}</span>
+          {updatedStr && <span class="text-sm text-text-light">(updated {updatedStr})</span>}
+        </div>
+        <h1 class="text-3xl md:text-4xl font-serif font-bold text-primary leading-tight">{title}</h1>
+        <p class="mt-4 text-lg text-text-muted leading-relaxed">{description}</p>
+        <div class="mt-6">
+          <TagList tags={tags} />
+        </div>
+      </header>
+
+      <!-- Table of Contents -->
+      <TableOfContents headings={headings} />
+
+      <!-- Content -->
+      <div class="prose prose-lg max-w-none
+        prose-headings:font-serif prose-headings:text-primary prose-headings:font-bold
+        prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
+        prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
+        prose-p:text-text prose-p:leading-relaxed
+        prose-a:text-accent prose-a:no-underline hover:prose-a:text-accent-light
+        prose-strong:text-text
+        prose-ul:text-text prose-ol:text-text
+        prose-li:leading-relaxed
+        prose-blockquote:border-accent prose-blockquote:text-text-muted prose-blockquote:italic
+        prose-table:text-sm
+        prose-th:text-left prose-th:text-primary prose-th:font-semibold prose-th:bg-surface prose-th:px-4 prose-th:py-2
+        prose-td:px-4 prose-td:py-2 prose-td:border-b prose-td:border-border
+      ">
+        <slot />
+      </div>
+
+      <!-- Author -->
+      <div class="mt-12 pt-8 border-t border-border">
+        <p class="text-sm text-text-muted">Published by <span class="font-medium text-text">{author}</span></p>
+      </div>
+    </div>
+  </article>
+
+  <CTASection
+    headline="See how ePortfolios can work for your institution"
+    primaryHref="/demo"
+  />
+</BaseLayout>
