@@ -1,0 +1,126 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import ContentCard from "../../components/ContentCard.astro";
+import CTASection from "../../components/CTASection.astro";
+
+const allResources = (await getCollection("resources"))
+  .filter((r) => !r.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const featured = allResources.filter((r) => r.data.featured);
+const recent = allResources.slice(0, 6);
+
+const categories = [
+  { slug: "guides", label: "Guides", description: "Practical how-to content for CBME implementation", icon: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" },
+  { slug: "evidence", label: "Evidence Summaries", description: "Research findings on ePortfolios in medical education", icon: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" },
+  { slug: "regulatory", label: "Regulatory References", description: "NMC, NBEMS, and NAAC guidelines and requirements", icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" },
+  { slug: "glossary", label: "Glossary", description: "Key terms in CBME and medical education", icon: "M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" },
+  { slug: "case-studies", label: "Case Studies", description: "Real institutions using ePortfolios", icon: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" },
+];
+
+const categoryCounts: Record<string, number> = {};
+for (const r of allResources) {
+  categoryCounts[r.data.category] = (categoryCounts[r.data.category] || 0) + 1;
+}
+---
+<BaseLayout title="Resources" description="Evidence summaries, guides, glossary, and regulatory references for ePortfolios in Indian medical education.">
+
+  <!-- Hero -->
+  <section class="bg-gradient-to-b from-white to-surface py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <SectionHeading
+        eyebrow="Resources"
+        title="Evidence, guides, and regulatory references"
+        subtitle="Everything you need to build the case for ePortfolios at your institution."
+      />
+
+      <!-- Pagefind Search -->
+      <div class="max-w-xl mx-auto mt-8" id="search"></div>
+      <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+      <script is:inline src="/pagefind/pagefind-ui.js"></script>
+      <script is:inline>
+        window.addEventListener("DOMContentLoaded", () => {
+          new PagefindUI({
+            element: "#search",
+            showSubResults: true,
+            showImages: false,
+          });
+        });
+      </script>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section class="bg-white py-16 px-6">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-2xl font-serif font-bold text-primary mb-8">Browse by Category</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {categories.map((cat) => (
+          <a href={`/resources/${cat.slug}/`} class="block bg-surface rounded-xl border border-border p-6 hover:border-primary/30 hover:shadow-sm transition-all no-underline group">
+            <div class="flex items-start gap-4">
+              <div class="p-2 bg-primary/10 rounded-lg shrink-0">
+                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d={cat.icon} />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-base font-semibold text-text group-hover:text-primary transition-colors">
+                  {cat.label}
+                  {categoryCounts[cat.slug] ? <span class="text-text-light font-normal ml-1">({categoryCounts[cat.slug]})</span> : null}
+                </h3>
+                <p class="mt-1 text-sm text-text-muted">{cat.description}</p>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured -->
+  {featured.length > 0 && (
+    <section class="bg-surface py-16 px-6">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-2xl font-serif font-bold text-primary mb-8">Featured</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {featured.map((r) => (
+            <ContentCard
+              title={r.data.title}
+              description={r.data.description}
+              category={r.data.category}
+              href={`/resources/${r.data.category}/${r.id.split("/").pop()!.replace(/\.md$/, "")}`}
+              pubDate={r.data.pubDate}
+              tags={r.data.tags}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Recent -->
+  <section class="bg-white py-16 px-6">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-2xl font-serif font-bold text-primary mb-8">Recent</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {recent.map((r) => (
+          <ContentCard
+            title={r.data.title}
+            description={r.data.description}
+            category={r.data.category}
+            href={`/resources/${r.data.category}/${r.id.split("/").pop()!.replace(/\.md$/, "")}`}
+            pubDate={r.data.pubDate}
+            tags={r.data.tags}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    headline="Need help building the case at your institution?"
+    primaryHref="/demo"
+  />
+</BaseLayout>

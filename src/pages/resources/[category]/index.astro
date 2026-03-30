@@ -1,0 +1,70 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import ContentCard from "../../../components/ContentCard.astro";
+import CTASection from "../../../components/CTASection.astro";
+
+export async function getStaticPaths() {
+  return ["guides", "evidence", "regulatory", "glossary", "case-studies"].map((category) => ({
+    params: { category },
+  }));
+}
+
+const { category } = Astro.params;
+
+const categoryMeta: Record<string, { label: string; title: string; description: string }> = {
+  guides: { label: "Guides", title: "Guides & How-Tos", description: "Practical guides for implementing ePortfolios, CBME, and competency-based assessment in Indian medical colleges." },
+  evidence: { label: "Evidence Summaries", title: "Evidence Summaries", description: "Research findings and systematic reviews on ePortfolios in medical education." },
+  regulatory: { label: "Regulatory References", title: "Regulatory References", description: "NMC, NBEMS, and NAAC guidelines relevant to ePortfolios and CBME." },
+  glossary: { label: "Glossary", title: "Glossary", description: "Key terms and definitions in competency-based medical education." },
+  "case-studies": { label: "Case Studies", title: "Case Studies", description: "Real institutions using ePortfolios for competency-based medical education." },
+};
+
+const meta = categoryMeta[category!] || { label: category, title: category, description: "" };
+
+const posts = (await getCollection("resources"))
+  .filter((r) => r.data.category === category && !r.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+<BaseLayout title={meta.title} description={meta.description}>
+
+  <section class="bg-gradient-to-b from-white to-surface py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <nav class="text-sm text-text-muted mb-8">
+        <a href="/" class="hover:text-primary no-underline">Home</a>
+        <span class="mx-2">/</span>
+        <a href="/resources/" class="hover:text-primary no-underline">Resources</a>
+        <span class="mx-2">/</span>
+        <span class="text-text">{meta.label}</span>
+      </nav>
+      <h1 class="text-3xl md:text-4xl font-serif font-bold text-primary">{meta.title}</h1>
+      <p class="mt-4 text-lg text-text-muted">{meta.description}</p>
+    </div>
+  </section>
+
+  <section class="bg-white py-16 px-6">
+    <div class="max-w-6xl mx-auto">
+      {posts.length > 0 ? (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {posts.map((r) => (
+            <ContentCard
+              title={r.data.title}
+              description={r.data.description}
+              category={r.data.category}
+              href={`/resources/${r.data.category}/${r.id.split("/").pop()!.replace(/\.md$/, "")}`}
+              pubDate={r.data.pubDate}
+              tags={r.data.tags}
+            />
+          ))}
+        </div>
+      ) : (
+        <p class="text-text-muted text-center py-12">Content coming soon.</p>
+      )}
+    </div>
+  </section>
+
+  <CTASection
+    headline="See how ePortfolios can work for your institution"
+    primaryHref="/demo"
+  />
+</BaseLayout>

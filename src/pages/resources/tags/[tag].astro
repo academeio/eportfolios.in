@@ -1,0 +1,58 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import ContentCard from "../../../components/ContentCard.astro";
+import CTASection from "../../../components/CTASection.astro";
+
+export async function getStaticPaths() {
+  const resources = await getCollection("resources");
+  const allTags = [...new Set(resources.filter((r) => !r.data.draft).flatMap((r) => r.data.tags))];
+  return allTags.map((tag) => ({ params: { tag } }));
+}
+
+const { tag } = Astro.params;
+
+const posts = (await getCollection("resources"))
+  .filter((r) => !r.data.draft && r.data.tags.includes(tag!))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+<BaseLayout title={`Tagged: ${tag}`} description={`All resources tagged with "${tag}" on Academe ePortfolios.`}>
+
+  <section class="bg-gradient-to-b from-white to-surface py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <nav class="text-sm text-text-muted mb-8">
+        <a href="/" class="hover:text-primary no-underline">Home</a>
+        <span class="mx-2">/</span>
+        <a href="/resources/" class="hover:text-primary no-underline">Resources</a>
+        <span class="mx-2">/</span>
+        <span class="text-text">Tag: {tag}</span>
+      </nav>
+      <h1 class="text-3xl md:text-4xl font-serif font-bold text-primary">
+        Tagged: <span class="text-accent">{tag}</span>
+      </h1>
+      <p class="mt-4 text-lg text-text-muted">{posts.length} resource{posts.length !== 1 ? "s" : ""}</p>
+    </div>
+  </section>
+
+  <section class="bg-white py-16 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {posts.map((r) => (
+          <ContentCard
+            title={r.data.title}
+            description={r.data.description}
+            category={r.data.category}
+            href={`/resources/${r.data.category}/${r.id.split("/").pop()!.replace(/\.md$/, "")}`}
+            pubDate={r.data.pubDate}
+            tags={r.data.tags}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    headline="See how ePortfolios can work for your institution"
+    primaryHref="/demo"
+  />
+</BaseLayout>
