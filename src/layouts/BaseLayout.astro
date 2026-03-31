@@ -9,6 +9,8 @@ interface Props {
   title: string;
   description?: string;
   ogImage?: string;
+  ogType?: string;
+  canonicalUrl?: string;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
@@ -16,10 +18,12 @@ const {
   title,
   description = "Open-source ePortfolio platform for competency-based medical education in India. EPA tracking, reflective practice, and NAAC-ready documentation.",
   ogImage = "/og-default.png",
+  ogType = "website",
+  canonicalUrl,
   jsonLd,
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const canonicalURL = canonicalUrl ? new URL(canonicalUrl) : new URL(Astro.url.pathname, Astro.site);
 const fullTitle = `${title} | Academe ePortfolios`;
 
 // Global structured data: Organization + WebSite
@@ -50,20 +54,22 @@ const globalJsonLd = [
   },
 ];
 
-// Build breadcrumb from URL path
+// Build full breadcrumb from URL path segments
 const pathSegments = Astro.url.pathname.split("/").filter(Boolean);
-const breadcrumbItems = [
+const breadcrumbItems: Record<string, unknown>[] = [
   { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://eportfolios.in/" },
 ];
-if (pathSegments.length > 0) {
-  const segmentName = pathSegments[0].replace(/-/g, " ").replace(/\b\w/g, (c: string) => c.toUpperCase());
+let cumulativePath = "https://eportfolios.in";
+pathSegments.forEach((seg, i) => {
+  cumulativePath += `/${seg}`;
+  const name = seg.replace(/-/g, " ").replace(/\b\w/g, (c: string) => c.toUpperCase());
   breadcrumbItems.push({
     "@type": "ListItem",
-    "position": 2,
-    "name": segmentName,
-    "item": canonicalURL.href,
+    "position": i + 2,
+    "name": name,
+    "item": `${cumulativePath}/`,
   });
-}
+});
 const breadcrumbJsonLd = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -85,11 +91,12 @@ const allJsonLd = [
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate" type="application/rss+xml" title="Academe ePortfolios Resources" href="https://eportfolios.in/resources/rss.xml" />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(ogImage, Astro.site)} />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content="Academe ePortfolios" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={fullTitle} />
@@ -98,6 +105,7 @@ const allJsonLd = [
     {allJsonLd.map((ld) => (
       <script type="application/ld+json" set:html={JSON.stringify(ld)} />
     ))}
+    <link rel="stylesheet" href="https://use.typekit.net/ukf7oqk.css">
     <title>{fullTitle}</title>
   </head>
   <body class="bg-surface text-text font-sans antialiased">

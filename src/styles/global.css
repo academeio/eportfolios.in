@@ -1,6 +1,102 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* ─── Academic prose ──────────────────────────────────────────────────────── */
+
+/* Drop cap on the first paragraph of an article body */
+.academic-prose > p:first-of-type::first-letter {
+  float: left;
+  font-size: 3.6em;
+  line-height: 0.78;
+  margin: 0.04em 0.12em -0.04em 0;
+  font-weight: 700;
+  color: var(--color-primary);
+  font-family: "itc-galliard", Georgia, serif;
+}
+
+/* Hide markdown --- horizontal rules — h2 border-top serves the same purpose */
+.academic-prose hr {
+  display: none;
+}
+
+/* Section rules — thin line above every h2 */
+.academic-prose > h2 {
+  border-top: 1px solid var(--color-border);
+  padding-top: 1.75rem;
+  margin-top: 2.5rem;
+  font-optical-sizing: auto;
+}
+
+/* First h2 (Abstract) — no top rule */
+.academic-prose > h2:first-of-type {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+/* Blockquote as academic pull-quote */
+.academic-prose > blockquote {
+  border-left: 3px solid var(--color-accent);
+  background-color: var(--color-surface-alt);
+  padding: 1rem 1.5rem;
+  font-style: italic;
+  font-size: 1.05em;
+  margin: 2rem 0;
+}
+
+/* Superscripts — look like journal citation numbers */
+.academic-prose sup {
+  font-size: 0.65em;
+  font-weight: 600;
+  color: var(--color-accent);
+  cursor: default;
+  vertical-align: super;
+  line-height: 0;
+}
+
+/* Inline links inside prose — underline dotted for academic feel */
+.academic-prose a {
+  text-decoration-style: dotted;
+  text-underline-offset: 2px;
+}
+
+/* References list — smaller, tighter, indented */
+.academic-prose > h2:last-of-type ~ ol,
+.academic-prose > h2:last-of-type ~ ol li,
+.academic-prose .references ol,
+.academic-prose .references ol li {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+/* Strong in abstract / keywords line */
+.academic-prose > p > strong:only-child,
+.academic-prose .abstract > strong {
+  font-variant: small-caps;
+  letter-spacing: 0.04em;
+  font-size: 0.85em;
+}
+
+/* Table header styling */
+.academic-prose thead th {
+  font-variant: small-caps;
+  letter-spacing: 0.05em;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--color-border);
+}
+
+/* ─── Author small-caps ───────────────────────────────────────────────────── */
+.author-sc {
+  font-variant: small-caps;
+  font-family: "itc-galliard", Georgia, serif;
+  letter-spacing: 0.05em;
+  font-size: 1.05em;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
 @theme {
   --color-primary: #1e3a5f;
   --color-primary-light: #2c5282;
@@ -15,5 +111,5 @@
   --color-border: #e2e0d8;
 
   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
-  --font-serif: "Merriweather", Georgia, "Times New Roman", serif;
+  --font-serif: "itc-galliard", Georgia, "Times New Roman", serif;
 }
