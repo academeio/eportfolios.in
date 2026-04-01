@@ -1,43 +1,114 @@
 ---
+const currentPath = Astro.url.pathname;
+
+const resourceCategories = [
+  { label: "Guides", href: "/resources/guides/", desc: "How-to and implementation guides" },
+  { label: "Evidence", href: "/resources/evidence/", desc: "Research summaries and study reviews" },
+  { label: "Case Studies", href: "/resources/case-studies/", desc: "Real-world CBME implementations" },
+  { label: "Regulatory", href: "/resources/regulatory/", desc: "NMC, NBEMS, and PGMER references" },
+  { label: "Glossary", href: "/resources/glossary/", desc: "Key terms defined" },
+];
+
 const navItems = [
   { label: "Why ePortfolios", href: "/why-eportfolios" },
   { label: "For Medical Colleges", href: "/for-medical-colleges" },
   { label: "Implementation", href: "/implementation" },
-  { label: "Resources", href: "/resources" },
   { label: "About", href: "/about" },
 ];
 
-const currentPath = Astro.url.pathname;
+const isResourcesActive = currentPath.startsWith("/resources");
 ---
-<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-border">
-  <nav class="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
-    <a href="/" class="flex items-center gap-2 text-primary font-serif font-bold text-xl no-underline">
-      Academe <span class="font-sans font-normal text-sm text-accent">ePortfolios</span>
+
+<header class="sticky top-0 z-50 bg-primary border-b border-primary-dark/50">
+  <nav class="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
+
+    <!-- Left: ePortfolios logo -->
+    <a href="/" class="flex-shrink-0 no-underline">
+      <img
+        src="/eportfolios-logo.png"
+        alt="Academe ePortfolios — PG CBME"
+        class="h-8 w-auto"
+      />
     </a>
-    <div class="hidden lg:flex items-center gap-8">
+
+    <!-- Centre: nav items -->
+    <div class="hidden lg:flex items-center gap-7">
       {navItems.map(({ label, href }) => (
         <a
           href={href}
           class:list={[
-            "text-sm font-medium no-underline transition-colors",
+            "text-sm font-medium no-underline transition-colors whitespace-nowrap",
             currentPath === href || currentPath.startsWith(href + "/")
-              ? "text-primary"
-              : "text-text-muted hover:text-primary",
+              ? "text-white"
+              : "text-white/70 hover:text-white",
           ]}
         >
           {label}
         </a>
       ))}
+
+      <!-- Resources dropdown -->
+      <div class="relative group">
+        <button
+          class:list={[
+            "flex items-center gap-1 text-sm font-medium transition-colors cursor-pointer bg-transparent border-0 p-0",
+            isResourcesActive ? "text-white" : "text-white/70 hover:text-white",
+          ]}
+          aria-haspopup="true"
+        >
+          Resources
+          <svg class="w-3.5 h-3.5 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+
+        <!-- Dropdown panel -->
+        <div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-72 bg-white rounded-lg shadow-lg border border-border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150">
+          <div class="p-2">
+            {resourceCategories.map(({ label, href, desc }) => (
+              <a
+                href={href}
+                class:list={[
+                  "flex flex-col px-3 py-2.5 rounded-md no-underline transition-colors",
+                  currentPath.startsWith(href)
+                    ? "bg-primary/5 text-primary"
+                    : "hover:bg-surface text-text",
+                ]}
+              >
+                <span class="text-sm font-medium">{label}</span>
+                <span class="text-xs text-text-muted mt-0.5">{desc}</span>
+              </a>
+            ))}
+            <div class="border-t border-border mt-1 pt-1">
+              <a href="/resources/" class="flex px-3 py-2 rounded-md text-xs font-medium text-accent hover:bg-surface no-underline transition-colors">
+                Browse all resources →
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <a
         href="/demo"
-        class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-primary rounded-lg hover:bg-primary-light transition-colors no-underline"
+        class="inline-flex items-center px-4 py-1.5 text-sm font-medium text-primary bg-accent rounded-md hover:bg-accent-light transition-colors no-underline whitespace-nowrap"
       >
         Schedule a Demo
       </a>
     </div>
+
+    <!-- Right: Academe logo -->
+    <a href="https://academe.in" target="_blank" rel="noopener" class="flex-shrink-0 no-underline hidden lg:block">
+      <img
+        src="/academe-logo.png"
+        alt="Academe Research"
+        class="h-7 w-auto"
+      />
+    </a>
+
+    <!-- Mobile: hamburger -->
     <button
       id="mobile-menu-btn"
-      class="lg:hidden p-2 text-text-muted hover:text-primary"
+      class="lg:hidden p-2 text-white/70 hover:text-white"
       aria-label="Toggle menu"
       aria-expanded="false"
     >
@@ -46,28 +117,41 @@ const currentPath = Astro.url.pathname;
       </svg>
     </button>
   </nav>
-  <div id="mobile-menu" class="hidden lg:hidden border-t border-border bg-white">
-    <div class="px-6 py-4 space-y-3">
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden lg:hidden border-t border-primary-dark/50 bg-primary-dark">
+    <div class="px-6 py-4 space-y-1">
       {navItems.map(({ label, href }) => (
         <a
           href={href}
           class:list={[
-            "block text-sm font-medium no-underline",
-            currentPath === href ? "text-primary" : "text-text-muted",
+            "block py-2 text-sm font-medium no-underline",
+            currentPath === href ? "text-white" : "text-white/70",
           ]}
         >
           {label}
         </a>
       ))}
-      <a
-        href="/demo"
-        class="block text-center px-4 py-2 text-sm font-medium text-white bg-primary rounded-lg no-underline mt-4"
-      >
-        Schedule a Demo
-      </a>
+      <div class="pt-1">
+        <p class="text-xs font-medium text-white/40 uppercase tracking-wider py-2">Resources</p>
+        {resourceCategories.map(({ label, href }) => (
+          <a href={href} class="block py-1.5 pl-3 text-sm text-white/70 no-underline">
+            {label}
+          </a>
+        ))}
+      </div>
+      <div class="pt-3 border-t border-white/10">
+        <a
+          href="/demo"
+          class="block text-center px-4 py-2 text-sm font-medium text-primary bg-accent rounded-md no-underline"
+        >
+          Schedule a Demo
+        </a>
+      </div>
     </div>
   </div>
 </header>
+
 <script>
   const btn = document.getElementById("mobile-menu-btn");
   const menu = document.getElementById("mobile-menu");
